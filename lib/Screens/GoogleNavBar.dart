@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:graduteproject/Screens/detailsOfFeed.dart';
 import 'package:graduteproject/Screens/feed.dart';
+import 'package:graduteproject/Screens/login.dart';
+import 'package:graduteproject/Screens/vacc1.dart';
 import 'package:line_icons/line_icons.dart';
 class TabPage extends StatefulWidget {
   @override
@@ -113,15 +115,10 @@ class _TabPageState extends State<TabPage> {
                 return Feed();
                 break;
               case 2:
-                return Container(
-                  color: colors[position],
-                );
+                return LoginScreen();
                 break;
               case 3:
-                return Container(
-                  color: colors[position],
-
-                );
+                return Vacc1();
 
                 break;
             }

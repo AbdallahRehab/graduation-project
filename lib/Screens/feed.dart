@@ -69,6 +69,7 @@ class _FeedState extends State<Feed> {
                   ),
                 ],
               ),
+
               //SizedBox(height: 10.0,),
             ],
           )

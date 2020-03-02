@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduteproject/Screens/GoogleNavBar.dart';
+import 'package:graduteproject/Screens/login.dart';
+import 'package:graduteproject/Screens/splashScreen.dart';
 
 import 'Screens/nureiesScreen.dart';
 
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: TabPage(),
 
     );
 
