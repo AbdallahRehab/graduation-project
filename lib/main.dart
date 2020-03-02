@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduteproject/Screens/GoogleNavBar.dart';
+
 import 'Screens/nureiesScreen.dart';
 
 void main() => runApp(MyApp());
@@ -8,7 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: NurseiesScreen(),
+      debugShowCheckedModeBanner: false,
+      home: TabPage(),
 
     );
 
