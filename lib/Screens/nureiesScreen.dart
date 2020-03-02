@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduteproject/components/myBar.dart';
+import 'package:graduteproject/components/nursiesBody.dart';
+import 'package:graduteproject/components/MySideBar.dart';
 
 class NurseiesScreen extends StatefulWidget {
   @override
@@ -10,35 +11,21 @@ class _NurseiesScreenState extends State<NurseiesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: MyBar(),
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
+      appBar:  AppBar(
+          backgroundColor: Color(0XFF015668),
+          elevation: 0,
+          title: Padding(
+            padding: EdgeInsets.only(right: 50),
+            child: Center(
+              child: Text(
+                  "Nurseies",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,fontSize: 25)
               ),
             ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
-        ),
+          )
       ),
+      drawer: MySideBar(),
+        body: MyBody(),
+
 
     );
   }
