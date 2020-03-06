@@ -27,11 +27,12 @@ class MySideBar extends StatelessWidget {
 
               ),
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0XFF00BBFF),Color(0XFF0098FF),Color(0XFF001255)],
-                  )
+//                  gradient: LinearGradient(
+//                    begin: Alignment.topLeft,
+//                    end: Alignment.bottomRight,
+//                    colors: [Color(0XFF00BBFF),Color(0XFF0098FF),Color(0XFF001255)],
+//                  )
+              color: Color(0XFF015668)
 
               ),
           ),

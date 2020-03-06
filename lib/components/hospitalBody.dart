@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HospitalBody extends StatelessWidget {
@@ -8,43 +9,29 @@ class HospitalBody extends StatelessWidget {
             decoration: BoxDecoration(
               color: Color(0XFF015668),
             ),
-            child: Column(
+            child: Stack(
+              alignment: Alignment.topCenter,
               children: <Widget>[
-                SizedBox(
-                  height: 120,
-                ),
+
                 Container(
+                  margin: EdgeInsets.only(top: 120),
+
                   height: MediaQuery.of(context).size.height - 200,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(90),
-                          topRight: Radius.circular(90))),
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30))),
                   child: Padding(
-                    padding: EdgeInsets.only(left: 60,right: 60),
+                    padding: EdgeInsets.only(left: 60,right: 60,),
                     child: Column(
                       children: <Widget>[
-                       Container(
 
-                         child: ClipOval(
-
-                           child: Material(
-                             color: Colors.grey,
-
-                             child: InkWell(
-                               child: Icon(Icons.location_on,size: 35,color: Color(0XFF015668),),
-                             ),
-                           ),
-                         ),
-                         width: 60,
-                         height: 60,
-
-                       ),
-                        SizedBox(height: 15,),
+                        SizedBox(height: 45,),
                         Text(
                           "Hospital name",
                           style:
-                          TextStyle(fontWeight: FontWeight.w800, color: Color(0XFF015668)),
+                          TextStyle(fontWeight: FontWeight.w800, color: Color(0XFF015668),fontSize: 18),
                         ),
                         SizedBox(height: 20,),
 
@@ -66,7 +53,27 @@ class HospitalBody extends StatelessWidget {
                       ],
                     ),
                   ),
-                )
+                ),
+                Positioned(
+                  top: 90,
+                  child: Container(
+
+
+                    child: ClipOval(
+
+                      child: Material(
+                        color: Colors.grey[300],
+
+                        child: InkWell(
+                          child: Icon(Icons.location_on,size: 40,color: Color(0XFF015668),),
+                        ),
+                      ),
+                    ),
+                    width: 60,
+                    height: 60,
+
+                  ),
+                ),
               ],
             )));
   }
@@ -74,7 +81,7 @@ class HospitalBody extends StatelessWidget {
 
 Widget bodyContent(String key, String value) {
   return Padding(
-      padding: EdgeInsets.fromLTRB(5, 25, 5, 0),
+      padding: EdgeInsets.fromLTRB(5, 30, 5, 5),
       child: Row(children: <Widget>[
         Text(
           key,

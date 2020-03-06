@@ -73,7 +73,7 @@ class MyBody extends StatelessWidget {
 }
 Widget myListTile(BuildContext context,String city,String name,double rate){
   return Padding(
-    padding: EdgeInsets.all(20),
+    padding: EdgeInsets.fromLTRB(20,20,20,5),
     child: Container(
       height: 80,
       child: Card(
