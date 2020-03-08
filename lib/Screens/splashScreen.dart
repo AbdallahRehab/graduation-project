@@ -11,7 +11,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return new SplashScreen(
-        seconds: 10,
+        seconds: 5,
         navigateAfterSeconds: new NurseiesScreen(),
         title: new Text('Build your Child\'s life properly',
           style: new TextStyle(
