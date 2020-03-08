@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduteproject/Screens/hospitalDetails.dart';
-class MyBody extends StatelessWidget {
-  TextEditingController _textFieldController = TextEditingController();
+class MyBody extends StatefulWidget {
+  @override
+  _State createState() => _State();
+}
+
+class _State extends State<MyBody> {
+TextEditingController _textFieldController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return
