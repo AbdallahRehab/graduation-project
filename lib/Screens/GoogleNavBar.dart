@@ -4,6 +4,7 @@ import 'package:graduteproject/Screens/detailsOfFeed.dart';
 import 'package:graduteproject/Screens/feed.dart';
 import 'package:graduteproject/Screens/login.dart';
 import 'package:graduteproject/Screens/vacc1.dart';
+import 'package:graduteproject/Screens/vacctaken.dart';
 import 'package:line_icons/line_icons.dart';
 class TabPage extends StatefulWidget {
   @override
@@ -118,7 +119,7 @@ class _TabPageState extends State<TabPage> {
                 return LoginScreen();
                 break;
               case 3:
-                return Vacc1();
+                return VaccTaken();
 
                 break;
             }

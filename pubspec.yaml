@@ -29,6 +29,9 @@ dependencies:
   line_icons: ^0.2.0
   direct_select: ^1.0.0
   font_awesome_flutter: ^8.7.0
+  avatar_glow: ^1.1.0
+  shape_of_view: ^1.0.2
+  expansion_tile_card: ^1.0.2+2
 
 
 
