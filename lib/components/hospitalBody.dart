@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
+class HospitalBody extends StatefulWidget {
+  @override
+  _HospitalBodyState createState() => _HospitalBodyState();
+}
 
-class HospitalBody extends StatelessWidget {
+class _HospitalBodyState extends State<HospitalBody> {
+  double rating=0;
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
         child: Container(
             decoration: BoxDecoration(
@@ -41,15 +48,33 @@ class HospitalBody extends StatelessWidget {
                         bodyContent("Total Nurseies :", "12"),
                         bodyContent("Availble Nuresies :", "4"),
                         SizedBox(height: 20,),
-                        Row(
-                          children: <Widget>[
-                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-                          ],
+//                        Row(
+//                          children: <Widget>[
+//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
+//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
+//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
+//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
+//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
+//                          ],
+//                        )
+                        SmoothStarRating(
+                            allowHalfRating: false,
+                            onRatingChanged: (v) {
+                              rating = v;
+                              setState(() {
+                                print(v);
+                              });
+                            },
+                            starCount: 5,
+                            rating: rating,
+                            size: 40.0,
+                            filledIconData: Icons.star,
+                            halfFilledIconData: Icons.star_half,
+                            color: Colors.green,
+                            borderColor: Colors.green,
+                            spacing:0.0
                         )
+
                       ],
                     ),
                   ),
