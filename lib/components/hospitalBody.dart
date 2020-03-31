@@ -1,12 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduteproject/models/hospital.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 class HospitalBody extends StatefulWidget {
   @override
   _HospitalBodyState createState() => _HospitalBodyState();
+  final Hospital hospital;
+
+  HospitalBody({this.hospital});
+
 }
 
 class _HospitalBodyState extends State<HospitalBody> {
+
+
   double rating=0;
   @override
   Widget build(BuildContext context) {
@@ -30,33 +37,27 @@ class _HospitalBodyState extends State<HospitalBody> {
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30))),
                   child: Padding(
-                    padding: EdgeInsets.only(left: 60,right: 60,),
+                    padding: EdgeInsets.only(left: 10,),
                     child: Column(
                       children: <Widget>[
 
                         SizedBox(height: 45,),
                         Text(
-                          "Hospital name",
+                          widget.hospital.hospital_name,
                           style:
                           TextStyle(fontWeight: FontWeight.w800, color: Color(0XFF015668),fontSize: 18),
                         ),
                         SizedBox(height: 20,),
 
-                        bodyContent("City :", "Cairo"),
-                        bodyContent("Address :", "13 Nasr City Cairo"),
-                        bodyContent("Phone :", "0122304056"),
-                        bodyContent("Total Nurseies :", "12"),
-                        bodyContent("Availble Nuresies :", "4"),
+                        bodyContent("City :", widget.hospital.city),
+                        bodyContent("Address :", widget.hospital.location),
+                        bodyContent("Phone :", widget.hospital.phone),
+                        bodyContent("Total Nurseies :", widget.hospital.total_num.toString()),
+                        bodyContent("Availble Nuresies :", widget.hospital.available_num.toString()),
+
+
                         SizedBox(height: 20,),
-//                        Row(
-//                          children: <Widget>[
-//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-//                            IconButton(icon:Icon(Icons.star,color:  Color(0XFFFFC107),size: 30),onPressed: (){},),
-//                          ],
-//                        )
+
                         SmoothStarRating(
                             allowHalfRating: false,
                             onRatingChanged: (v) {
@@ -102,25 +103,51 @@ class _HospitalBodyState extends State<HospitalBody> {
               ],
             )));
   }
+  Widget bodyContent(String key, String value) {
+    return Padding(
+        padding: EdgeInsets.fromLTRB(5, 30, 20, 5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+
+          Text(
+            key,
+            style:
+            TextStyle(fontWeight: FontWeight.w800, color: Color(0XFF015668)),
+          ),
+
+          Text(
+            value,
+            style: TextStyle(
+              fontWeight: FontWeight.w800,
+            ),
+          )
+        ]));
+  }
+
 }
 
 Widget bodyContent(String key, String value) {
   return Padding(
       padding: EdgeInsets.fromLTRB(5, 30, 5, 5),
-      child: Row(children: <Widget>[
-        Text(
-          key,
-          style:
-              TextStyle(fontWeight: FontWeight.w800, color: Color(0XFF015668)),
-        ),
-        SizedBox(
-          width: 40,
-        ),
-        Text(
-          value,
-          style: TextStyle(
-            fontWeight: FontWeight.w800,
+      child: SingleChildScrollView(
+        child: Row(children: <Widget>[
+          Expanded(
+            child: Text(
+              key,
+              style:
+                  TextStyle(fontWeight: FontWeight.w800, color: Color(0XFF015668)),
+            ),
           ),
-        )
-      ]));
+          SizedBox(
+            width: 20,
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontWeight: FontWeight.w800,
+            ),
+          )
+        ]),
+      ));
 }

@@ -5,6 +5,8 @@ import 'package:graduteproject/Screens/homepage.dart';
 import 'package:graduteproject/Screens/hospitalDetails.dart';
 import 'package:graduteproject/Screens/login.dart';
 import 'package:graduteproject/Screens/splashScreen.dart';
+import 'package:provider/provider.dart';
+
 
 
 import 'Screens/nureiesScreen.dart';
@@ -16,10 +18,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: NurseiesScreen(),
+        debugShowCheckedModeBanner: false,
+        home: NurseiesScreen(),
 
-    );
+      );
 
 
         }}
