@@ -1,6 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graduteproject/Screens/hospitalDetails.dart';
+import 'package:graduteproject/components/basichospitalList.dart';
+import 'package:graduteproject/components/hospitalCard.dart';
+import 'package:graduteproject/components/hospitalsearchResult.dart';
+import 'package:graduteproject/components/loadingSpin.dart';
+import 'package:graduteproject/models/hospital.dart';
+import 'package:graduteproject/services/hospitalservices.dart';
+import 'package:provider/provider.dart';
 class MyBody extends StatefulWidget {
   @override
   _State createState() => _State();
@@ -8,8 +14,17 @@ class MyBody extends StatefulWidget {
 
 class _State extends State<MyBody> {
 TextEditingController _textFieldController = TextEditingController();
+bool isSerach=false;
+String city;
+
   @override
   Widget build(BuildContext context) {
+    final hospitals=Provider.of<List<Hospital>>(context);
+    
+
+
+
+
     return
         SingleChildScrollView(
           child: Container(
@@ -29,7 +44,15 @@ TextEditingController _textFieldController = TextEditingController();
                     padding: EdgeInsets.fromLTRB(20, 20, 20, 30),
                   child: TextField(
                     maxLines: 1,
-                      controller: _textFieldController,
+                    controller: _textFieldController,
+                    onChanged: (val){
+                      setState(() {
+                        city=val;
+                        isSerach=true;
+                      });
+
+
+                    },
                     decoration: InputDecoration(
                       //Add th Hint text here.
                       hintText: "Enter Hospital",
@@ -46,28 +69,7 @@ TextEditingController _textFieldController = TextEditingController();
 
                   )),
                 SizedBox(height: 30,),
-                Container(
-                  height: MediaQuery.of(context).size.height - 220,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
-                  ),
-
-                  child: ListView(
-                    children: <Widget>[
-                      myListTile(context, "Cairo", "Hospital1", 5),
-                      myListTile(context, "Cairo", "Hospital2", 5),
-                      myListTile(context, "Cairo", "Hospital3", 3.8),
-                      myListTile(context, "Cairo", "Hospital4", 4),
-                      myListTile(context, "Cairo", "Hospital1", 5),
-                      myListTile(context, "Cairo", "Hospital2", 5),
-                      myListTile(context, "Cairo", "Hospital3", 3.8),
-                      myListTile(context, "Cairo", "Hospital4", 4),
-
-
-                    ],
-                  ),
-                )
+                isSerach ? SearchResultHospital(city) : BasicHospitalList(),
               ],
 
             ),
@@ -76,36 +78,7 @@ TextEditingController _textFieldController = TextEditingController();
 
   }
 }
-Widget myListTile(BuildContext context,String city,String name,double rate){
-  return Padding(
-    padding: EdgeInsets.fromLTRB(20,20,20,5),
-    child: Container(
-      height: 80,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15)
-        ),
-        elevation: 6.0,
-        child: InkWell(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> HospitalDetails(name: name,city: city,rate: rate,)));
-          },
-          child: ListTile(
-            leading: Icon(Icons.local_hospital,size: 35,),
-            title: Text(name,style: TextStyle(color: Color(0XFF015668)),),
-            subtitle: Text(city,style: TextStyle(color: Color(0XFFFFC107)),),
-            trailing: Wrap(
-              spacing: 1,
-              children: <Widget>[
-                Text(rate.toString()),
-                Icon(Icons.star,color:  Color(0XFFFFC107),size: 14,),
-              ],)
 
 
 
-          ),
-        ),
-      ),
-    ),
-  );
-}
+
