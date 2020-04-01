@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduteproject/components/hospitalCard.dart';
 import 'package:graduteproject/components/loadingSpin.dart';
 import 'package:graduteproject/models/hospital.dart';
+import 'package:graduteproject/provider/settings_provider.dart';
 import 'package:graduteproject/services/hospitalservices.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,11 @@ class SearchResultHospital extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hospitals=Provider.of<List<Hospital>>(context);
+    //final hospitals=Provider.of<List<Hospital>>(context);
+    SettingsProdiver settings = Provider.of<SettingsProdiver>(context);
+    var hospitals = Provider.of<List<Hospital>>(context)
+        .where((hospital) => settings.GovernorateLines.contains(hospital.governorate))
+        .toList();
     return  Container(
       height: MediaQuery.of(context).size.height - 220,
       width: double.infinity,
@@ -29,9 +34,16 @@ class SearchResultHospital extends StatelessWidget {
               return ListView.builder(
                   itemCount: hospitals.length,
                   itemBuilder: (BuildContext context, int index) {
-                    print("ddddddddddddddddd");
                     return HospitalCard(
                         hospital: hospitals[index]);
+//                    Hospital hospital=hospitals[index];
+//                    print(hospital.governorate);
+//                  return ListTile(
+//                    leading: Icon(Icons.local_hospital,size: 35,),
+//                    title: Text(hospital.hospital_name,style: TextStyle(color: Color(0XFF015668)),),
+//                    subtitle: Text(hospital.city,style: TextStyle(color: Color(0XFFFFC107)),),
+//                    trailing: Text(hospital.governorate,style: TextStyle(color: Color(0XFFFFC107)),),
+//                  );
                   });}
             else{
               print("ddd");

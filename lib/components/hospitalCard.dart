@@ -27,12 +27,7 @@ class HospitalCard extends StatelessWidget {
               leading: Icon(Icons.local_hospital,size: 35,),
               title: Text(hospital.hospital_name,style: TextStyle(color: Color(0XFF015668)),),
               subtitle: Text(hospital.city,style: TextStyle(color: Color(0XFFFFC107)),),
-//                trailing: Wrap(
-//                  spacing: 1,
-//                  children: <Widget>[
-//                    Text(rate.toString()),
-//                    Icon(Icons.star,color:  Color(0XFFFFC107),size: 14,),
-//                  ],)
+              trailing: Text(hospital.governorate,style: TextStyle(color: Color(0XFFFFC107)),),
 
 
 

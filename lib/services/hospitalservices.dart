@@ -16,6 +16,7 @@ class HospitalServices{
           location: doc.data['location'] ?? '',
           email: doc.data['email'] ?? '',
           phone: doc.data['phone'] ?? '',
+          governorate: doc.data['governorate'] ?? '',
           total_num: doc.data['total_num'] ?? 0,
           available_num: doc.data['available_num'] ?? 0
       );
