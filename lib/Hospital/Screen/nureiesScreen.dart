@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graduteproject/components/nursiesBody.dart';
+import 'package:graduteproject/Hospital/Componant/nursiesBody.dart';
 import 'package:graduteproject/components/MySideBar.dart';
-import 'package:graduteproject/models/hospital.dart';
-import 'package:graduteproject/services/hospitalservices.dart';
+import 'package:graduteproject/Hospital/Model/hospital.dart';
+import 'package:graduteproject/Hospital/Service/hospitalservices.dart';
 import 'package:provider/provider.dart';
 
 class NurseiesScreen extends StatefulWidget {

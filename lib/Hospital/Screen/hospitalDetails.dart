@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduteproject/components/hospitalBody.dart';
-import 'package:graduteproject/models/hospital.dart';
+import 'package:graduteproject/Hospital/Componant/hospitalBody.dart';
+import 'package:graduteproject/Hospital/Model/hospital.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class HospitalDetails extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduteproject/components/silver%20app.dart';
+import 'package:graduteproject/Feed/Screen/silver%20app.dart';
 
 import 'feedTopbar.dart';
 

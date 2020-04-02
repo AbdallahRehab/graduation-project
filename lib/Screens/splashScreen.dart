@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduteproject/Screens/nureiesScreen.dart';
+import 'package:graduteproject/Hospital/Screen/nureiesScreen.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 class Splash extends StatefulWidget {

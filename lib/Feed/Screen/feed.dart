@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graduteproject/Screens/detailsOfFeed.dart';
-import 'package:graduteproject/Screens/feedTopbar.dart';
-import 'package:graduteproject/components/DropDown.dart';
+import 'package:graduteproject/Feed/Screen/detailsOfFeed.dart';
+import 'package:graduteproject/Feed/Screen/feedTopbar.dart';
+import 'package:graduteproject/Feed/Screen/DropDown.dart';
 
 class Feed extends StatefulWidget {
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:graduteproject/Screens/detailsOfFeed.dart';
-import 'package:graduteproject/Screens/feed.dart';
+import 'package:graduteproject/Feed/Screen/detailsOfFeed.dart';
+import 'package:graduteproject/Feed/Screen/feed.dart';
 import 'package:graduteproject/Screens/login.dart';
 import 'package:graduteproject/Screens/vacc1.dart';
 import 'package:graduteproject/Screens/vacctaken.dart';
