@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:graduteproject/Hospital/Screen/hospitalDetails.dart';
-import 'package:graduteproject/Hospital/Model/hospital.dart';
-import 'package:graduteproject/Hospital/Service/settings_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:graduteproject/Screens/hospitalDetails.dart';
+import 'package:graduteproject/models/hospital.dart';
 
 class HospitalCard extends StatelessWidget {
   final Hospital hospital;
@@ -12,7 +10,6 @@ class HospitalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SettingsProdiver settings = Provider.of<SettingsProdiver>(context);
     return Padding(
       padding: EdgeInsets.fromLTRB(20,20,20,5),
       child: Container(
@@ -30,7 +27,6 @@ class HospitalCard extends StatelessWidget {
               leading: Icon(Icons.local_hospital,size: 35,),
               title: Text(hospital.hospital_name,style: TextStyle(color: Color(0XFF015668)),),
               subtitle: Text(hospital.city,style: TextStyle(color: Color(0XFFFFC107)),),
-              trailing: Text(hospital.governorate,style: TextStyle(color: Color(0XFFFFC107)),),
 //                trailing: Wrap(
 //                  spacing: 1,
 //                  children: <Widget>[
