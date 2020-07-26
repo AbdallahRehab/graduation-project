@@ -1,5 +1,7 @@
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Hospital{
 
 
@@ -14,6 +16,10 @@ class Hospital{
   final corrds;
   final int available_num;
   final int total_num;
+  //final DocumentReference per; .get().namevalue
+  //yatsyast
+  //uryryry
+
 
   Hospital({ this.hospital_name, this.city, this.location, this.email,
       this.phone,this.governorate,this.corrds,this.latitude,this.longitude,this.available_num, this.total_num});

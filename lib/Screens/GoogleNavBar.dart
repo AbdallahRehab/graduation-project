@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:graduteproject/Feed/Screen/detailsOfFeed.dart';
-import 'package:graduteproject/Feed/Screen/feed.dart';
-import 'package:graduteproject/Screens/login.dart';
-import 'package:graduteproject/Screens/vacc1.dart';
-import 'package:graduteproject/Screens/vacctaken.dart';
+import 'package:graduteproject/Food/Screen/detailsOfFeed.dart';
+import 'package:graduteproject/Food/Screen/food.dart';
+import 'package:graduteproject/Vacc/screens/login.dart';
+import 'package:graduteproject/Vacc/screens/vacc1.dart';
+import 'package:graduteproject/Vacc/screens/vacctaken.dart';
 import 'package:line_icons/line_icons.dart';
 class TabPage extends StatefulWidget {
   @override
@@ -113,7 +113,7 @@ class _TabPageState extends State<TabPage> {
                 );
                 break;
               case 1:
-                return Feed();
+                return Food();
                 break;
               case 2:
                 return LoginScreen();

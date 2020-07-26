@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:graduteproject/components/hospitalCard.dart';
+import 'package:graduteproject/Hospital/Componant/hospitalCard.dart';
+import 'package:graduteproject/Hospital/Model/hospital.dart';
+import 'package:graduteproject/Hospital/Service/hospitalservices.dart';
 import 'package:graduteproject/components/loadingSpin.dart';
-import 'package:graduteproject/models/hospital.dart';
-import 'package:graduteproject/services/hospitalservices.dart';
 import 'package:provider/provider.dart';
 
 class SearchResultHospital extends StatelessWidget {
@@ -23,7 +23,7 @@ class SearchResultHospital extends StatelessWidget {
 
 //
       child: StreamBuilder(
-          stream: HospitalServices().getHospitalByCity(city),
+
           builder:(context,snapshot) {
             if(snapshot.hasData){
               return ListView.builder(

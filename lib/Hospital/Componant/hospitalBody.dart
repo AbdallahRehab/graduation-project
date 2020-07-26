@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduteproject/Hospital/Model/hospital.dart';
 import 'package:map_launcher/map_launcher.dart';
+
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 
@@ -16,6 +17,7 @@ class HospitalBody extends StatefulWidget {
 
 class _HospitalBodyState extends State<HospitalBody> {
   double rating = 0;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -28,7 +30,10 @@ class _HospitalBodyState extends State<HospitalBody> {
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.only(top: 120),
-                  height: MediaQuery.of(context).size.height - 200,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height - 200,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -96,7 +101,11 @@ class _HospitalBodyState extends State<HospitalBody> {
                             color: Color(0XFF015668),
 
                           ),
-                          onTap: ()=> openMapsSheet(context,widget.hospital),
+                          onTap: () {
+                            setState(() {
+                              openMapsSheet(context, widget.hospital);
+                            });
+                            }
 //                              Navigator.of(context)
 //                              .push(MaterialPageRoute(builder: (context) => MapLauncherDemo())),
                         ),
@@ -110,15 +119,15 @@ class _HospitalBodyState extends State<HospitalBody> {
             )));
   }
 
-  openMapsSheet(context,Hospital hosptail) async {
+  openMapsSheet(context, Hospital hosptail) async {
     try {
       //final title = "Shibīn al Kawm";
       //final description = "Asia's tallest building";
       //var hospital=hosptail;
       //final coords = hosptail.coords[1];
-      final coords = Coords(hosptail.latitude,hosptail.longitude);
-      final dd=hosptail.latitude;
-      final ww=hosptail.longitude;
+      final coords = Coords(hosptail.latitude, hosptail.longitude);
+      final dd = hosptail.latitude;
+      final ww = hosptail.longitude;
 
 
       print('eeeeeee $dd------- $ww');
@@ -135,12 +144,13 @@ class _HospitalBodyState extends State<HospitalBody> {
                   children: <Widget>[
                     for (var map in availableMaps)
                       ListTile(
-                        onTap: () => map.showMarker(
-                          coords: coords,
+                        onTap: () =>
+                            map.showMarker(
+                              coords: coords,
 
-                          //title: title,
-                          //description: description,
-                        ),
+                              //title: title,
+                              //description: description,
+                            ),
                         title: Text(map.mapName),
                         leading: Image(
                           image: map.icon,
@@ -161,48 +171,49 @@ class _HospitalBodyState extends State<HospitalBody> {
   }
 
 
+//  Widget bodyContent(String key, String value) {
+//    return Padding(
+//        padding: EdgeInsets.fromLTRB(5, 30, 20, 5),
+//        child: Row(
+//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//            children: <Widget>[
+//              Text(
+//                key,
+//                style: TextStyle(
+//                    fontWeight: FontWeight.w800, color: Color(0XFF015668)),
+//              ),
+//              Text(
+//                value,
+//                style: TextStyle(
+//                  fontWeight: FontWeight.w800,
+//                ),
+//              )
+//            ]));
+//  }
+//}
+
   Widget bodyContent(String key, String value) {
     return Padding(
-        padding: EdgeInsets.fromLTRB(5, 30, 20, 5),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
+        padding: EdgeInsets.fromLTRB(5, 30, 5, 5),
+        child: SingleChildScrollView(
+          child: Row(children: <Widget>[
+            Expanded(
+              child: Text(
                 key,
                 style: TextStyle(
                     fontWeight: FontWeight.w800, color: Color(0XFF015668)),
               ),
-              Text(
-                value,
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                ),
-              )
-            ]));
-  }
-}
-
-Widget bodyContent(String key, String value) {
-  return Padding(
-      padding: EdgeInsets.fromLTRB(5, 30, 5, 5),
-      child: SingleChildScrollView(
-        child: Row(children: <Widget>[
-          Expanded(
-            child: Text(
-              key,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Text(
+              value,
               style: TextStyle(
-                  fontWeight: FontWeight.w800, color: Color(0XFF015668)),
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          Text(
-            value,
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-            ),
-          )
-        ]),
-      ));
+                fontWeight: FontWeight.w800,
+              ),
+            )
+          ]),
+        ));
+  }
 }

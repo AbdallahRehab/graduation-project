@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graduteproject/Feed/Screen/detailsOfFeed.dart';
-import 'package:graduteproject/Feed/Screen/feedTopbar.dart';
-import 'package:graduteproject/Feed/Screen/DropDown.dart';
+import 'package:graduteproject/Food/Screen/detailsOfFeed.dart';
+import 'package:graduteproject/Food/Screen/feedTopbar.dart';
+import 'package:graduteproject/Food/Screen/DropDown.dart';
 
-class Feed extends StatefulWidget {
+class Food extends StatefulWidget {
   @override
-  _FeedState createState() => _FeedState();
+  _FoodState createState() => _FoodState();
 }
 
-class _FeedState extends State<Feed> {
+class _FoodState extends State<Food> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
