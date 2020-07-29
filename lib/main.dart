@@ -5,6 +5,7 @@ import 'package:graduteproject/Screens/homepage.dart';
 
 
 import 'package:graduteproject/Screens/splashScreen.dart';
+import 'package:graduteproject/Vacc/screens/mainVacc.dart';
 import 'package:graduteproject/Vacc/services/authservices.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: MainVaccScreen(),
       ),
     );
   }
