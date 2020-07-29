@@ -14,7 +14,8 @@ import 'Food/Screen/food.dart';
 import 'Food/Screen/sys_food.dart';
 import 'Hospital/Screen/nureiesScreen.dart';
 import 'Hospital/Service/settings_provider.dart';
-import 'Screens/login_screen.dart';
+import 'Screens/signup_screen.dart';
+import 'Screens/onboarding_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MainVaccScreen(),
+        home: OnboardingScreen(),
       ),
     );
   }
