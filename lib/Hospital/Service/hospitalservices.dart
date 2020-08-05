@@ -5,10 +5,7 @@ import 'package:graduteproject/Hospital/Model/hospital.dart';
 
 
 class HospitalServices{
-  
-  
   final CollectionReference ref=Firestore.instance.collection('Hospital');
-
   List<Hospital> getListFormSnapshot(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       return Hospital(
@@ -30,11 +27,4 @@ class HospitalServices{
   Stream<List<Hospital>> get getHospitals{
     return ref.snapshots().map(getListFormSnapshot);
   }
-  // search by city 
-
-
-//sadsds
-
-
-
 }

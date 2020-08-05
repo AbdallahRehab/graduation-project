@@ -37,7 +37,7 @@ class FilterContent extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.0),
+            borderRadius: BorderRadius.circular(8.0),
             color: Colors.yellowAccent,
           ),
           width: MediaQuery.of(context).size.width/5,

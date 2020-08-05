@@ -12,7 +12,9 @@ import 'package:provider/provider.dart';
 
 import 'Food/Screen/food.dart';
 import 'Food/Screen/sys_food.dart';
+import 'Hospital/Screen/hospital.dart';
 import 'Hospital/Screen/nureiesScreen.dart';
+import 'Hospital/Service/Hospital_Service.dart';
 import 'Hospital/Service/settings_provider.dart';
 import 'Screens/signup_screen.dart';
 import 'Screens/onboarding_screen.dart';
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final HospitalService _db=HospitalService();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -30,11 +33,11 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(create:(BuildContext context) => AuthServices() ),
 
-//StreamProvider(create: (BuildContext context)=>_db.getHospitals,),
+    StreamProvider(create: (BuildContext context)=>_db.getDatafromHospital(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: OnboardingScreen(),
+        home: HospitalScreen(),
       ),
     );
   }

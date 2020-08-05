@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _Sys_FoodState extends State<Sys_Food> {
                 Container(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: RaisedButton(
-                    color: selectedone ? Color(0XFF3AC569) : Colors.white,
+                    color: selectedone ? Color(0xFF6A60A9) : Colors.white,
                     padding: EdgeInsets.all(4.0),
                     onPressed: () {
                       /*...*/
@@ -65,7 +66,7 @@ class _Sys_FoodState extends State<Sys_Food> {
                 Container(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: RaisedButton(
-                    color: selectedtwo ? Color(0XFF3AC569) : Colors.white,
+                    color: selectedtwo ? Color(0xFF6A60A9) : Colors.white,
                     padding: EdgeInsets.all(4.0),
                     onPressed: () {
                       /*...*/
@@ -90,7 +91,7 @@ class _Sys_FoodState extends State<Sys_Food> {
                 Container(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: RaisedButton(
-                    color: selectedthree ? Color(0XFF3AC569) : Colors.white,
+                    color: selectedthree ? Color(0xFF6A60A9) : Colors.white,
                     padding: EdgeInsets.all(4.0),
                     onPressed: () {
                       /*...*/
@@ -128,35 +129,32 @@ class _Sys_FoodState extends State<Sys_Food> {
   }
 
   Widget listdata() {
-    var listd = [
-      {
-        "name": "ahmed",
-        "age": "24",
-      },
-      {
-        "name": "ahmed",
-        "age": "23",
-      },
-      {
-        "name": "ahmed",
-        "age": "22",
-      }
-    ];
+
     return Container(
-      child: ListView.builder(
-          itemCount: listd.length,
-          itemBuilder: (BuildContext context, int index) {
-            return SingleChild(
-              childname: listd[index]['name'],
-              age: listd[index]['age'],
-            );
+      child: StreamBuilder(
+          stream: Firestore.instance
+              .collection('generalAdviceBaby')
+              .orderBy('order', descending: true)
+              .snapshots(),
+          builder: (context, snapshots) {
+            if (!snapshots.hasData) {
+              return Center(child: new Text("CONNECTING....."));
+            }
+            return ListView.builder(
+                itemCount: snapshots.data.documents.length,
+                itemBuilder: (BuildContext context, int index) {
+                  DocumentSnapshot ds = snapshots.data.documents[index];
+                  return SingleChild(
+                    title: ds['title'],
+                    des: ds['des'],
+                  );
+                });
           }),
     );
   }
 
   Widget fatness() {
     return Container(
-
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,12 +168,12 @@ class _Sys_FoodState extends State<Sys_Food> {
 
             child: Container(
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [const Color(0xFFFFFFFF),const Color(0xFF88DBA3)],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                borderRadius:  BorderRadius.circular(9.0),
+                gradient: LinearGradient(
+                  colors: [const Color(0xFF6A60A9), const Color(0xFF6A60A9)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+                borderRadius: BorderRadius.circular(9.0),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -183,136 +181,7 @@ class _Sys_FoodState extends State<Sys_Food> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.03,
                   ),
-                  Image.asset('images/childrenpana.png'),
-                  Container(
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            " النظام خاص لمعالجة مرض السمنه الذي يصيب الأطفال نتيجة لسوء التغذيه"
-                            " .."
-                            " يمكنك اتباع هذا النظام علي مدار الأسبوع لجعل حياة طفلك سعيده وخاليه من الامراض المزمنه",
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
-                            textAlign: TextAlign.right,
-                          ),
-                          Text(
-                            "هذا النظام لا يصلح لمن هم دون 24 شهر",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold
-                            ),
-                            textAlign: TextAlign.right,
-                          )
-                        ],
-                      ),
-                  ),
-
-                  //Text("dsdsds")
-                ],
-              ),
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.95,
-            height: MediaQuery.of(context).size.height * 0.472,
-            //color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                    flex: 2,
-                    child: Image.asset('images/motherhoodbro.jpg'),),
-                Expanded(
-                  flex: 1,
-                  child: ListView(
-                          children: <Widget>[
-                            ListTile(
-                              title: Text("اليوم الاول",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                        onTap: (){
-                              print('dd');
-                              showAlertDialog(context);
-                            },),
-                            ListTile(
-                              title: Text("اليوم الاول",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                              onTap: (){
-                                print('dd');
-                                showAlertDialog(context);
-                              },),
-                          ],
-                        ),
-
-
-                )
-
-              ],
-            ),
-          ),
-
-        ],
-      ),
-    );
-  }
-  showAlertDialog(BuildContext context) {
-    // Create button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
-    // Create AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("وجبة الغداء في اليوم الاول",textAlign: TextAlign.right,),
-      content: Text("وجبة الغداء: تناول قطعة من اللحم المسلوقة أو المشوية بجانب 5 ملاعق من المكرونة بالإضافة طبق من السلطة.",textAlign: TextAlign.right,),
-      actions: [
-        okButton,
-      ],
-
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
-  Widget Thinness() {
-    return Container(
-
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            //color: Colors.pink,
-            elevation: 10,
-
-            child: Container(
-              decoration: BoxDecoration(
-
-                  gradient: LinearGradient(
-                    colors: [const Color(0xFFFFFFFF),const Color(0xFF88DBA3)],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                borderRadius:  BorderRadius.circular(9.0),
-
-              ),
-
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-
-                  Image.asset('images/undraw_back_to_school.png'),
+                  Image.asset('images/Childrenpana.png'),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.6,
                     height: MediaQuery.of(context).size.height * 0.2,
@@ -320,9 +189,10 @@ class _Sys_FoodState extends State<Sys_Food> {
                       children: <Widget>[
                         Text(
                           " النظام خاص لمعالجة مرض السمنه الذي يصيب الأطفال نتيجة لسوء التغذيه"
-                              " .."
-                              " يمكنك اتباع هذا النظام علي مدار الأسبوع لجعل حياة طفلك سعيده وخاليه من الامراض المزمنه",
+                          " .."
+                          " يمكنك اتباع هذا النظام علي مدار الأسبوع لجعل حياة طفلك سعيده وخاليه من الامراض المزمنه",
                           style: TextStyle(
+                            color: Colors.white,
                             fontSize: 15,
                           ),
                           textAlign: TextAlign.right,
@@ -330,9 +200,8 @@ class _Sys_FoodState extends State<Sys_Food> {
                         Text(
                           "هذا النظام لا يصلح لمن هم دون 24 شهر",
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold
-                          ),
+                            color: Colors.white,
+                              fontSize: 15, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.right,
                         )
                       ],
@@ -353,33 +222,223 @@ class _Sys_FoodState extends State<Sys_Food> {
               children: <Widget>[
                 Expanded(
                   flex: 2,
-                  child: Image.asset('images/motherhoodbro.jpg'),),
+                  child: Image.asset('images/Fatherhoodpana.png'),
+                ),
                 Expanded(
-                  flex: 1,
-                  child: ListView(
-                    children: <Widget>[
-                      ListTile(
-                        title: Text("اليوم الاول",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                        onTap: (){
-                          print('dd');
-                          showAlertDialog(context);
-                        },),
-                      ListTile(
-                        title: Text("اليوم الاول",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
-                        onTap: (){
-                          print('dd');
-                          showAlertDialog(context);
-                        },),
-                    ],
-                  ),
+                    flex: 1,
+                    child: StreamBuilder(
+                      stream: Firestore.instance
+                          .collection(' fatness')
+                          .orderBy('order', descending: true)
+                          .snapshots(),
+                      builder: (context, snapshots) {
+                        if (!snapshots.hasData) {
+                          return Center(child: new Text("CONNECTING....."));
+                        }
+
+                        return ListView.builder(
+                            itemCount: snapshots.data.documents.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              DocumentSnapshot ds =
+                                  snapshots.data.documents[index];
+                              //print(ds['des1']);
+                              return ListTile(
+                                title: Text(ds['title'],
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, fontSize: 16),textAlign: TextAlign.right,),
+                                onTap: () {
+                                  print('dd');
+                                  showAlertDialog(context,ds['title'],ds['des1'],ds['des2'],ds['des3'],ds['des4'],ds['des5']);
+                                },
+                              );
 
 
-                )
-
+                            });
+                      },
+                    ))
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
 
+  showAlertDialog(BuildContext context,String day,String des1,String des2,String des3,String des4,String des5) {
+    // Create button
+    Widget okButton = FlatButton(
+      child: Text("OK",style: TextStyle(color: Colors.white),),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      backgroundColor: Color(0xFF6A60A9),
+      title: Text(
+        "$day",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+        textAlign: TextAlign.right,
+      ),
+      content: SingleChildScrollView(
+        child: Text(
+          "$des1\n $des2 \n $des3 \n $des4 \n $des5",style: TextStyle(color: Colors.white),
+          textAlign: TextAlign.right,
+        ),
+      ),
+      actions: [
+        okButton,
+      ],
+    );
+
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+  showAlertDialogthinness(BuildContext context,String title,String des1) {
+    // Create button
+    Widget okButton = FlatButton(
+      child: Text("OK",style: TextStyle(color: Colors.white)),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      backgroundColor: Color(0xFF6A60A9),
+      title: Text(
+        "$title",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),
+        textAlign: TextAlign.right,
+      ),
+      content: SingleChildScrollView(
+        child: Text(
+          "$des1",style: TextStyle(fontSize: 16,color: Colors.white),
+          textAlign: TextAlign.right,
+        ),
+      ),
+      actions: [
+        okButton,
+      ],
+    );
+
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+  Widget Thinness() {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            //color: Colors.pink,
+            elevation: 10,
+
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [const Color(0xFF6A60A9), const Color(0xFF6A60A9)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+                borderRadius: BorderRadius.circular(9.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Image.asset('images/Motherhoodamico.png'),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          "هذا النظام خاص لمعالجة مرض النحافه الذي يصيب الأطفال نتيجة لسوء التغذيه .. يمكنك اتباع هذا النظام علي مدار الأسبوع لجعل حياة طفلك سعيده وخاليه من الامراض المزمنه",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white
+                          ),
+                          textAlign: TextAlign.right,
+                        ),
+                        Text(
+                          "هذا النظام لا يصلح لمن هم دون 24 شهر",
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
+                          textAlign: TextAlign.right,
+                        )
+                      ],
+                    ),
+                  ),
+
+                  //Text("dsdsds")
+                ],
+              ),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.95,
+            height: MediaQuery.of(context).size.height * 0.472,
+            //color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Image.asset('images/Fatherhoodpana.png'),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: StreamBuilder(
+                    stream: Firestore.instance
+                        .collection('thinness')
+                        .orderBy('order', descending: true)
+                        .snapshots(),
+                    builder: (context, snapshots) {
+
+                      if (!snapshots.hasData) {
+                        return Center(child: new Text("CONNECTING....."));
+                      }
+                      return ListView.builder(
+                          itemCount: snapshots.data.documents.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            DocumentSnapshot ds =
+                            snapshots.data.documents[index];
+                            //print(ds['des1']);
+
+
+                            return ListTile(
+                              title: Text(ds['title'],
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 14),textAlign: TextAlign.right,),
+                              onTap: () {
+                                print('dd');
+                                showAlertDialogthinness(context,ds['title'],ds['des1'],);
+                              },
+                            );
+
+
+                          });
+                    },
+                  )
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -397,10 +456,10 @@ class _Sys_FoodState extends State<Sys_Food> {
 }
 
 class SingleChild extends StatelessWidget {
-  final childname;
-  final age;
+  final title;
+  final des;
 
-  SingleChild({this.childname, this.age});
+  SingleChild({Key key, this.title, this.des}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -408,8 +467,12 @@ class SingleChild extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
       child: ExpansionTileCard(
         //leading: CircleAvatar(child: Icon(Icons.lock_open)),
-        title: Text('This is item #$childname'),
-        subtitle: Text('Tap to see more!'),
+        title: Text(
+          'فتره العمريه : $title',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+          textAlign: TextAlign.right,
+        ),
+
         children: <Widget>[
           Divider(
             thickness: 1.0,
@@ -423,10 +486,9 @@ class SingleChild extends StatelessWidget {
                 vertical: 8.0,
               ),
               child: Text(
-                """Hi there, I'm a drop-in replacement for Flutter's ExpansionTile.
-
-Use me any time you think your app could benefit from being just a bit more Material.""",
+                "$des",
                 style: Theme.of(context).textTheme.body1.copyWith(fontSize: 16),
+                textAlign: TextAlign.right,
               ),
             ),
           ),

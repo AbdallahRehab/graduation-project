@@ -13,7 +13,7 @@ class Hospital{
   final String governorate;
   final  latitude;
   final  longitude;
-  final corrds;
+  //final corrds;
   final int available_num;
   final int total_num;
   //final DocumentReference per; .get().namevalue
@@ -22,8 +22,19 @@ class Hospital{
 
 
   Hospital({ this.hospital_name, this.city, this.location, this.email,
-      this.phone,this.governorate,this.corrds,this.latitude,this.longitude,this.available_num, this.total_num});
+      this.phone,this.governorate,this.latitude,this.longitude,this.available_num, this.total_num});
 
+  Hospital.fromJson(Map<String, dynamic> parsedJson)
+      : hospital_name = parsedJson['hospital_name'],
+        city = parsedJson['city'],
+        location = parsedJson['location'],
+        phone = parsedJson['phone'],
+        governorate = parsedJson['governorate'],
+        latitude = parsedJson['latitude'],
+        longitude = parsedJson['longitude'],
+        total_num = parsedJson['total_num'],
+        available_num = parsedJson['available_num'],
+        email = parsedJson['email'];
 //  Hospital.fromJson(Map<String, dynamic> parsedJson)
 //      : hospital_name = parsedJson['hospital_name'],
 //        city = parsedJson['city'],

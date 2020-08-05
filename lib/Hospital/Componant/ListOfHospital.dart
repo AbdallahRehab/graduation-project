@@ -7,15 +7,22 @@ import 'package:graduteproject/components/loadingSpin.dart';
 import 'package:provider/provider.dart';
 
 class ListOfHospitals extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    var hospitals = Provider.of<List<Hospital>>(context);
     SettingsProdiver settings = Provider.of<SettingsProdiver>(context);
-    var hospitals = Provider.of<List<Hospital>>(context)
-        .where((hospital) => settings.waxLines.contains(hospital.governorate))
-        .toList();
-   return Container(
-     height: MediaQuery.of(context).size.height/1.763,
+//    var hospitals = Provider.of<List<Hospital>>(context)
+//        .where((hospital) => settings.waxLines.contains(hospital.governorate))
+//        .toList();
+//   return Container(
+//     height: MediaQuery.of(context).size.height/1.7,
+
+    return ListView.builder(
+        itemCount: hospitals.length,
+        itemBuilder: (context, index) {
+          Hospital report = hospitals[index];
+          return HospitalCard(hospital: hospitals[index]);
+        });
 
 //     child: StreamBuilder(
 //         stream: HospitalServices().getHospitals,
@@ -38,7 +45,6 @@ class ListOfHospitals extends StatelessWidget {
 //         }
 //
 //       ),
-     );
-
+//     );
   }
 }
