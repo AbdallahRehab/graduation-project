@@ -52,6 +52,7 @@ class ChildDetailsCard extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 8,
                 child: Checkbox(
                   value: taken,
+                  focusColor:Color(0XFFFBD14B) ,
                   activeColor: Color(0XFFFBD14B),
                   checkColor: Colors.white,
 

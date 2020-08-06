@@ -1,4 +1,5 @@
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
@@ -72,7 +73,17 @@ class _VaccTakenState extends State<VaccTaken> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text("Assem!",style: TextStyle(fontSize: 28,fontWeight: FontWeight.w800,color: Colors.white),)
+                    FutureBuilder(
+                      future: FirebaseAuth.instance.currentUser(),
+                      builder: (context,user){
+                        if(user.connectionState==ConnectionState.waiting){
+                          return Container();
+                        }else{
+                          return Text(user.data.displayName.toString(),style: TextStyle(fontSize: 28,fontWeight: FontWeight.w800,color: Colors.white),);
+                        }
+                      },
+                    ),
+
                   ],
                 ),
                 SizedBox(
