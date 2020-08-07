@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduteproject/Screens/GoogleNavBar.dart';
+import 'package:graduteproject/Screens/LoginScreen.dart';
 import 'package:graduteproject/Vacc/screens/childernScreen.dart';
 import 'package:graduteproject/Screens/homepage.dart';
 
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HospitalScreen(),
+        home: Login_Screen(),
       ),
     );
   }

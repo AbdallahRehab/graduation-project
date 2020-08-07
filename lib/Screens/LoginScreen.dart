@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:graduteproject/Screens/GoogleNavBar.dart';
+import 'package:graduteproject/Screens/signup_screen.dart';
 
 class Login_Screen extends StatelessWidget {
   TextEditingController emailController = new TextEditingController();
@@ -95,9 +98,15 @@ class Login_Screen extends StatelessWidget {
               width: MediaQuery.of(context).size.width/1.8,
               padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: FlatButton(
-                onPressed: () {
+                onPressed: () async{
                   print(emailController);
                   print(passwordController);
+                  try{
+                    FirebaseUser user= (await FirebaseAuth.instance.signInWithEmailAndPassword(email:emailController.text , password: passwordController.text)).user;
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TabPage()));
+                  }catch(e){
+                    print(e.toString());
+                  }
                 },
                 child: Text(
                   "تسجيل الدخول",
@@ -115,7 +124,9 @@ class Login_Screen extends StatelessWidget {
 
                   children: <Widget>[
                     InkWell(
-                      onTap: (){},
+                      onTap: ()async{
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+                      },
                       child: Text("انشاء حساب جديد",textAlign: TextAlign.right,style: TextStyle(fontWeight: FontWeight.bold,color: Color(0XFF3AC569),fontSize:16,decoration: TextDecoration.underline),),
                     ),
                     SizedBox(width: 8,),
