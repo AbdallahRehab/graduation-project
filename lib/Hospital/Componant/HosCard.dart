@@ -40,7 +40,7 @@ class HosCard extends StatelessWidget {
 
                 Container(
                   alignment: Alignment.centerRight,
-                  child: Text("مستشفي قويسنا المركزي  ",textAlign: TextAlign.right,),
+                  child: Text(hospital.hospital_name,style : TextStyle(fontWeight: FontWeight.bold,fontSize: 18),textAlign: TextAlign.right,),
                 ),
 
 

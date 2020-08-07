@@ -1,21 +1,81 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:graduteproject/Hospital/Service/settings_provider.dart';
 
 class FilterList extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height/9,
+    var settingsProvider = Provider.of<SettingsProdiver>(context);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: MediaQuery.of(context).size.height/9,
 
 
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          FilterContent("الكل "),
-          FilterContent("المنوفية "),
-          FilterContent("الغربية "),
-          FilterContent("القاهرة"),
-          FilterContent("الجيزة")
-        ],
+        child:Wrap(
+
+          spacing: 8.0,
+          runSpacing: 5.0,
+          children: <Widget>[
+            FilterChip(
+              backgroundColor: Color(0xFF6A60A9),
+              disabledColor: Color(0xFF6A60A9),
+
+              selectedColor: Color(0xFF6A60A9),
+              label: Text(
+                'المنوفيه',
+                style:
+                TextStyle(color: Colors.white,
+                    fontSize: 22,fontWeight: FontWeight.bold),
+              ),
+              selected: (settingsProvider.waxLines.contains('m'))
+                  ? true
+                  : false,
+              onSelected: (bool value) {
+                if (value == true) {
+                  settingsProvider.addWaxLine('m');
+                } else {
+                  settingsProvider.removeWaxLine('m');
+                }
+              },
+            ),
+            FilterChip(
+              backgroundColor: Color(0xFF6A60A9),
+              disabledColor: Color(0xFF6A60A9),
+
+              selectedColor: Color(0xFF6A60A9),
+
+              label: Text(
+                'الغربيه',
+                style:
+                TextStyle(color: Colors.white,
+                    fontSize: 22,fontWeight: FontWeight.bold),
+              ),
+              selected: (settingsProvider.waxLines.contains('g'))
+                  ? true
+                  : false,
+              onSelected: (bool value) {
+                if (value == true) {
+                  settingsProvider.addWaxLine('g');
+                } else {
+                  settingsProvider.removeWaxLine('g');
+                }
+              },
+            ),
+          ],
+        ),
+//      ListView(
+//        scrollDirection: Axis.horizontal,
+//        children: <Widget>[
+//
+//          FilterContent("المنوفية "),
+//          FilterContent("الغربية "),
+//
+//        ],
+//      ),
       ),
     );
   }

@@ -15,11 +15,11 @@ class _HospitalsBodyState extends State<HospitalsBody> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        SizedBox(height: 10),
-        SearchWidget(),
+       // SizedBox(height: 10),
+        //SearchWidget(),
         SizedBox(height: 10),
         FilterList(),
-        SizedBox(height: 10),
+        //SizedBox(height: 10),
         Expanded(
           child: ListOfHospitals(),
         ),
