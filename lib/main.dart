@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduteproject/Screens/GoogleNavBar.dart';
 import 'package:graduteproject/Screens/LoginScreen.dart';
+import 'package:graduteproject/Vacc/screens/VaccRangeDetails.dart';
 import 'package:graduteproject/Vacc/screens/childernScreen.dart';
 import 'package:graduteproject/Screens/homepage.dart';
 
@@ -19,6 +20,8 @@ import 'Hospital/Service/Hospital_Service.dart';
 import 'Hospital/Service/settings_provider.dart';
 import 'Screens/signup_screen.dart';
 import 'Screens/onboarding_screen.dart';
+import 'Screens/splashScreen.dart';
+import 'Vacc/screens/ChildsData.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Login_Screen(),
+        home: ChildsData(),
       ),
     );
   }
