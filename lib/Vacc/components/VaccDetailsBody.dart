@@ -49,21 +49,26 @@ class ChildCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 25, 20, 25),
-                width: MediaQuery.of(context).size.width / 10,
-                height: MediaQuery.of(context).size.height / 10,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Color(0XFFFBD14B),
+              InkWell(
+                onTap: (){
+
+                },
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(20, 25, 20, 25),
+                  width: MediaQuery.of(context).size.width / 10,
+                  height: MediaQuery.of(context).size.height / 10,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Color(0XFFFBD14B),
+                  ),
+                  child: Center(
+                      child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios),
+                    onPressed: () {},
+                    iconSize: 18,
+                    color: Colors.white,
+                  )),
                 ),
-                child: Center(
-                    child: IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () {},
-                  iconSize: 18,
-                  color: Colors.white,
-                )),
               ),
               Container(
                 margin: EdgeInsets.only(right: 30),
