@@ -1,9 +1,26 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduteproject/Vacc/screens/ChildsData.dart';
 import 'package:graduteproject/Vacc/screens/VaccDetails.dart';
 
-class VaccBody extends StatelessWidget {
+class VaccBody extends StatefulWidget {
+  final String nationalparant;
+
+  const VaccBody({Key key, this.nationalparant}) : super(key: key);
+
+  @override
+  _VaccBodyState createState() => _VaccBodyState();
+
+}
+
+class _VaccBodyState extends State<VaccBody> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _VaccBodyState();
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -14,12 +31,13 @@ class VaccBody extends StatelessWidget {
         child: Center(
           child: Padding(
             padding: EdgeInsets.only(left: 20,right: 20,),
-            child: Column(
+            child:Column(
               children: <Widget>[
+
                 SizedBox(height: MediaQuery.of(context).size.height/7,),
                 CardContent(imageUrl: "images/paper.png",name: "تفاصيل التطيعمات",navigate: (){Navigator.push(context, MaterialPageRoute(builder: (context) => VaccDetails()));},),
                 SizedBox(height: 20,),
-                CardContent(imageUrl: "images/fatherhood.png",name: "بيانات اطفالي",navigate: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ChildsData()));},),
+                CardContent(imageUrl: "images/fatherhood.png",name: "بيانات الاطفال",navigate: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ChildsData(nationalparant: widget.nationalparant,)));},),
               ],
             ),
           ),

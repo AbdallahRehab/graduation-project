@@ -1,11 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class OneChildBody extends StatelessWidget {
+  var vaccination;
+
+
+
   var cList = [
     {"name": "التطعيم الاول", "taken" : true},
     {"name": "التطعيم التاني","taken" : true },
     {"name": "التطعيم الثالث", "taken" : false},
+    {"name": "التطعيم الرابع", "taken" : false},
+    {"name": "التطعيم الخامس", "taken" : false},
+    {"name": "التطعيم السادس", "taken" : false},
+    {"name": "التطعيم السابع", "taken" : false},
+    {"name": "التطعيم الثامن", "taken" : false},
   ];
+
+  OneChildBody({Key key, this.vaccination}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -13,15 +26,17 @@ class OneChildBody extends StatelessWidget {
         color: Colors.white,
         height: MediaQuery.of(context).size.height / 1.15,
         padding: EdgeInsets.only(top: 20),
-        child: ListView.builder(
-          itemCount: cList.length,
-          itemBuilder: (context, index) {
-            return ChildDetailsCard(
-              name: cList[index]['name'],
-              taken: cList[index]['taken'],
-            );
-          },
-        ),
+        child:  ListView.builder(
+              itemCount: cList.length,
+              itemBuilder: (context, index) {
+                return ChildDetailsCard(
+                  name: cList[index]['name'],
+                  taken: vaccination['vacc_${index+1}'],
+                  //taken: cList[index]['taken'],
+                );
+              },
+            ),
+
       ),
     );
   }

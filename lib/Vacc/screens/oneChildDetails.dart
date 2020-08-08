@@ -4,8 +4,8 @@ import 'package:graduteproject/Vacc/components/oneChildBody.dart';
 
 class OneChildDetails extends StatelessWidget {
   final String name;
-
-  OneChildDetails({this.name});
+  var vaccination;
+  OneChildDetails({this.name, this.vaccination});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class OneChildDetails extends StatelessWidget {
           child: Text(name,style: TextStyle(color: Color(0XFFFFFFFF),fontWeight: FontWeight.bold,fontSize: 25),),
         ),
       ),
-      body: OneChildBody(),
+      body: OneChildBody( vaccination: vaccination,),
 
     );
   }

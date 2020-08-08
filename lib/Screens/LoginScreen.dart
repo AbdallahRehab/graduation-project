@@ -2,10 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:graduteproject/Screens/GoogleNavBar.dart';
 import 'package:graduteproject/Screens/signup_screen.dart';
+import 'package:graduteproject/Vacc/screens/mainVacc.dart';
 
 class Login_Screen extends StatelessWidget {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +106,10 @@ class Login_Screen extends StatelessWidget {
                   print(passwordController);
                   try{
                     FirebaseUser user= (await FirebaseAuth.instance.signInWithEmailAndPassword(email:emailController.text , password: passwordController.text)).user;
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TabPage()));
+                    //String uid=user.data.uid.toString();
+
+                    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TabPage()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainVaccScreen()));
                   }catch(e){
                     print(e.toString());
                   }

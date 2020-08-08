@@ -79,6 +79,7 @@ class _VaccTakenState extends State<VaccTaken> {
                         if(user.connectionState==ConnectionState.waiting){
                           return Container();
                         }else{
+
                           return Text(user.data.displayName.toString(),style: TextStyle(fontSize: 28,fontWeight: FontWeight.w800,color: Colors.white),);
                         }
                       },

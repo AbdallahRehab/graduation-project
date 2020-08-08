@@ -262,12 +262,13 @@ class SignUpScreen extends StatelessWidget {
                                   userInfo.displayName=_textFieldControllername.text;
                                   user.updateProfile(userInfo).then((onValue){
                                     Navigator.push(context, MaterialPageRoute(builder: (context) => TabPage()));
-                                    Firestore.instance.collection('User').document().setData(
+                                    Firestore.instance.collection('User').document(user.uid).setData(
                                       {
                                         'email' : _textFieldControllerEmail.text,
                                         'national_id' : _textFieldControllernationalid.text,
                                         'parent_phone' : _textFieldControllerphone.text,
-                                        'parent_name' : _textFieldControllername.text
+                                        'parent_name' : _textFieldControllername.text,
+
                                       }
                                     );
                                   });
