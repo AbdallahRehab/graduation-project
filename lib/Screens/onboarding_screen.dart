@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:graduteproject/Screens/LoginScreen.dart';
 
 
 
@@ -12,7 +13,6 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
-  //final PageController _pageControllerlast = PageController(initialPage: 1,);
   int _currentPage = 0;
 
   List<Widget> _buildPageIndicator() {
@@ -66,7 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: FlatButton(
                     onPressed: (){
 
-
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login_Screen()));
 
                     },
                     child: Padding(
@@ -182,7 +182,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               child: Image(
                                 image: AssetImage(
 
-                                  'images/undrawbaby .png',
+                                  'images/undrawbaby.png',
                                 ),
                                 height: MediaQuery.of(context).size.height*0.3,
                                 width: MediaQuery.of(context).size.width,
@@ -265,7 +265,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               width: double.infinity,
               color: Colors.white,
               child: GestureDetector(
-                onTap: () => print('Get started'),
+                onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login_Screen())),
                 child: Center(
                   child: Text(
                     'ابدأ',

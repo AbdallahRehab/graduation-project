@@ -11,7 +11,7 @@ class HosCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(20,20,20,5),
+      padding: EdgeInsets.fromLTRB(20,8,20,5),
       child: Container(
 
         height: MediaQuery.of(context).size.height/6.5,
@@ -34,7 +34,7 @@ class HosCard extends StatelessWidget {
                   height:  MediaQuery.of(context).size.height/6.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),topLeft: Radius.circular(15)),
-                    color: Color(0XFF3AC569),
+                    color: Color(0XFFFBD14B),
                   ),
                 ),
 
@@ -48,19 +48,20 @@ class HosCard extends StatelessWidget {
                   margin: EdgeInsets.only(right: 8),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: Color(0XFFCFF0DA),
+                    color: Color(0XFFECECEC),
                   ),
 
                   width: MediaQuery.of(context).size.width/5,
-                  height: MediaQuery.of(context).size.height/8,
+
                   child: Container(
                     width: MediaQuery.of(context).size.width/7,
-                    height: MediaQuery.of(context).size.height/8.2,
+                      height: MediaQuery.of(context).size.height/10,
+
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("images/hospitalIcon.png"),
 
-                        fit: BoxFit.cover
+                        fit: BoxFit.contain
                       )
                     ),
                   ),

@@ -5,22 +5,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class SettingsProdiver with ChangeNotifier{
-  String _units;
+
   List<String> _waxLines;
 
   SettingsProdiver(){
-    _units='Imperial';
+
     _waxLines=['m','g'];
     loadPreferences();
   }
 
   //getter
-  String get units=>_units;
+
   List<String> get waxLines=>_waxLines;
 
   //setter
   void setUnits(String units){
-    _units=units;
+
     notifyListeners();
     savePreferences();
   }
@@ -47,7 +47,7 @@ class SettingsProdiver with ChangeNotifier{
 
   savePreferences()async{
     SharedPreferences prefs=await SharedPreferences.getInstance();
-    prefs.setString('units', _units);
+
     prefs.setStringList('waxLines', _waxLines);
   }
 

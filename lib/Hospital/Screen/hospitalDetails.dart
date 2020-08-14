@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduteproject/Hospital/Model/hospital.dart';
+import 'package:graduteproject/Hospital/Screen/hospital.dart';
+import 'package:graduteproject/Screens/GoogleNavBar.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,7 +25,7 @@ class _HospitalDetailsState extends State<HospitalDetails> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                color: Color(0xFF3AC569),
+                color: Color(0xFF6A60A9),
                 height: MediaQuery.of(context).size.height * 0.3,
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.3,
@@ -31,44 +33,51 @@ class _HospitalDetailsState extends State<HospitalDetails> {
                   //margin: EdgeInsets.only(top: 30),
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('images/hospitalIcon.png'),
-                        fit: BoxFit.cover),
+                        image: AssetImage('images/OnlineDoctorrafiki.png'),
+                        fit: BoxFit.contain),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      InkWell(
-                        child: Container(
-                          //width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.09,
-                          padding: EdgeInsets.only(left: 8),
 
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.white,
-                            size: 30,
+                  child: SafeArea(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 15,left: 10,right: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+
+                          InkWell(
+                            child: Container(
+                              //width: MediaQuery.of(context).size.width,
+
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                            ),
+                            onTap: () {
+                              print("sssss");
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TabPage()));
+
+                            },
                           ),
-                        ),
-                        onTap: () {
-                          print("sssss");
-                        },
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(right: 8),
-                        //width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.09,
-                        child: Center(
+
+                          Container(
+                            //width: MediaQuery.of(context).size.width,
+
+
                             child: Text(
-                          widget.hospital.hospital_name,
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        )),
-                      )
-                    ],
+                              widget.hospital.hospital_name,
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -86,76 +95,94 @@ class _HospitalDetailsState extends State<HospitalDetails> {
                 ),
                 //color: Colors.pink,
                 elevation: 10,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                child: Row(
                   children: <Widget>[
-                    DataRow(
-                      name: " : العنوان  ",
-                      details: widget.hospital.location,
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width/50,
+                        height:  MediaQuery.of(context).size.height/1.36,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(18),topLeft: Radius.circular(30)),
+                          color: Color(0XFFFBD14B),
+                        ),
+                      ) ,
                     ),
-                    DataRow(
-                      name: " : التليفون ",
-                      details: widget.hospital.phone,
-                    ),
-                    DataRow(
-                      name: " : المدينة  ",
-                      details: widget.hospital.city,
-                    ),
-                    DataRow(
-                      name: " : اجمالي عدد الحضانات  ",
-                      details: "${widget.hospital.total_num}",
-                    ),
-                    DataRow(
-                      name: " : عدد الحضانات المتاحة  ",
-                      details: "${widget.hospital.available_num}",
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(35, 28, 35, 24),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Expanded(
+                      flex: 44,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          TwoButtons(
-                              statement: "اتصل بنا",
-                              myIcon: Icons.call,
-                              phone: widget.hospital.phone),
-                          //TwoButtonsmap(statement: "افتح الخريطة",myIcon: Icons.location_on,),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                openMapsSheet(context, widget.hospital);
-                              });
-                            },
-                            child: Container(
-                              child: Row(
-                                children: <Widget>[
-                                  Text(
-                                    "افتح الخريطة",
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0XFF3AC569),
-                                        fontSize: 16,
-                                        decoration: TextDecoration.underline),
+                          DataRow(
+                            name: " : العنوان  ",
+                            details: widget.hospital.location,
+                          ),
+                          DataRow(
+                            name: " : التليفون ",
+                            details: widget.hospital.phone,
+                          ),
+                          DataRow(
+                            name: " : المدينة  ",
+                            details: widget.hospital.city,
+                          ),
+                          DataRow(
+                            name: " : اجمالي عدد الحضانات  ",
+                            details: "${widget.hospital.total_num}",
+                          ),
+                          DataRow(
+                            name: " : عدد الحضانات المتاحة  ",
+                            details: "${widget.hospital.available_num}",
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(35, 28, 35, 24),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                TwoButtons(
+                                    statement: "اتصل بنا",
+                                    myIcon: Icons.call,
+                                    phone: widget.hospital.phone),
+                                //TwoButtonsmap(statement: "افتح الخريطة",myIcon: Icons.location_on,),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      openMapsSheet(context, widget.hospital);
+                                    });
+                                  },
+                                  child: Container(
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text(
+                                          "افتح الخريطة",
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0XFF340072),
+                                              fontSize: 16,
+                                              decoration: TextDecoration.underline),
+                                        ),
+                                        Icon(
+                                          Icons.location_on,
+                                          color: Color(0XFF340072),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Icon(
-                                    Icons.location_on,
-                                    color: Color(0XFF3AC569),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.5,
+                            height: MediaQuery.of(context).size.width / 2,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage("images/hospitaldetails.png"),
+                            )),
+                          )
                         ],
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.5,
-                      height: MediaQuery.of(context).size.width / 2,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                        image: AssetImage("images/hospitaldetails.png"),
-                      )),
-                    )
                   ],
                 ),
               ),
@@ -182,7 +209,7 @@ class DataRow extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(
-              left: 40,
+              left: 16,
             ),
             child: Text(
               details,
@@ -235,13 +262,13 @@ class TwoButtons extends StatelessWidget {
               textAlign: TextAlign.right,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color(0XFF3AC569),
+                  color: Color(0XFF340072),
                   fontSize: 16,
                   decoration: TextDecoration.underline),
             ),
             Icon(
               myIcon,
-              color: Color(0XFF3AC569),
+              color: Color(0XFF340072),
             ),
           ],
         ),
@@ -254,8 +281,8 @@ class TwoButtons extends StatelessWidget {
 
 openMapsSheet(context, Hospital hosptail) async {
   try {
-    //final title = "Shibīn al Kawm";
-    //final description = "Asia's tallest building";
+    final title = hosptail.hospital_name;
+    final description = hosptail.location;
     //var hospital=hosptail;
     //final coords = hosptail.coords[1];
     final coords = Coords(hosptail.latitude, hosptail.longitude);
@@ -279,8 +306,8 @@ openMapsSheet(context, Hospital hosptail) async {
                       onTap: () => map.showMarker(
                         coords: coords,
 
-                        //title: title,
-                        //description: description,
+                        title: title,
+                        description: description,
                       ),
                       title: Text(map.mapName),
                       leading: Image(

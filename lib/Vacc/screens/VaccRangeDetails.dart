@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduteproject/Screens/GoogleNavBar.dart';
+import 'package:graduteproject/Vacc/screens/VaccDetails.dart';
 
 
 class VaccRangeDetails extends StatelessWidget {
+  final String name,range_age,side_effect;
+   var vacc_name;
   var clist=[
     {
       'name' : 'التطعيم الاول'
@@ -17,6 +21,9 @@ class VaccRangeDetails extends StatelessWidget {
       'name' : 'التطعيم الاول'
     }
   ];
+
+   VaccRangeDetails({Key key, this.name, this.range_age, this.side_effect, this.vacc_name}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,54 +42,60 @@ class VaccRangeDetails extends StatelessWidget {
                   //margin: EdgeInsets.only(top: 30),
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('images/Doctor.png'),
+                        image: AssetImage('images/OnlineDoctorrafiki.png'),
                         fit: BoxFit.contain),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      InkWell(
-                        child: Container(
-                          //width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.09,
-                          padding: EdgeInsets.only(left: 8),
 
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.white,
-                            size: 30,
+                  child: SafeArea(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 15,left: 10,right: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+
+                          InkWell(
+                            child: Container(
+                              //width: MediaQuery.of(context).size.width,
+
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                            ),
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
                           ),
-                        ),
-                        onTap: () {
-                          print("sssss");
-                        },
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(right: 8),
-                        //width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.09,
-                        child: Center(
+
+                          Container(
+                            //width: MediaQuery.of(context).size.width,
+
+
                             child: Text(
-                              "الفترة الاولي",
+                              name,
                               textAlign: TextAlign.right,
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
-                            )),
-                      )
-                    ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
             ],
           ),
+
           Positioned(
             left: 20,
             top: 130,
             child: Container(
-              height: MediaQuery.of(context).size.height / 1.3,
+              height: MediaQuery.of(context).size.height / 1.45,
               width: MediaQuery.of(context).size.width / 1.13,
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -92,24 +105,24 @@ class VaccRangeDetails extends StatelessWidget {
                 elevation: 10,
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: MediaQuery.of(context).size.height/10,),
+                    SizedBox(height: 20,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 14),
                       child: Row(
                         children: <Widget>[
                           Expanded(
                             flex: 2,
-                            child: Text("مدة اربع سنين ل ست سنين",textAlign: TextAlign.right,style: TextStyle(fontWeight: FontWeight.w700),),
+                            child: Text(range_age,textAlign: TextAlign.right,style: TextStyle(fontSize: 17,fontWeight: FontWeight.w700),),
                           ),
                           SizedBox(width: 5,),
                           Expanded(
                             flex: 1,
-                            child: Text(" : الفترة الزمنية",textAlign: TextAlign.right,style: TextStyle(color:Color(0xFF6A60A9),fontSize: 16,fontWeight: FontWeight.bold ),),
+                            child: Text(" : الفترة الزمنية",textAlign: TextAlign.right,style: TextStyle(color:Color(0xFF6A60A9),fontSize: 18,fontWeight: FontWeight.bold ),),
                           )
                         ],
                       ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height/18,),
+                    SizedBox(height: 20,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 14),
                       child: Column(
@@ -117,16 +130,16 @@ class VaccRangeDetails extends StatelessWidget {
                           Container(
                             width: double.infinity,
 
-                            child: Text(" : التطعيمات تلك الفترة",textAlign: TextAlign.right,style: TextStyle(color:Color(0xFF6A60A9),fontSize: 16,fontWeight: FontWeight.bold ),) ,
+                            child: Text(" : التطعيمات تلك الفترة",textAlign: TextAlign.right,style: TextStyle(color:Color(0xFF6A60A9),fontSize: 17,fontWeight: FontWeight.bold ),) ,
                           ),
                           SizedBox(height: 15,),
                           Container(
-                            height: MediaQuery.of(context).size.height/4,
+                            height: MediaQuery.of(context).size.height/3.4,
                             child: ListView.builder(
-                              itemCount: clist.length,
+                              itemCount: vacc_name.length,
                               itemBuilder: (context,index){
                                 return OneVacc(
-                                  name: clist[index]['name'],
+                                  name: vacc_name[index],
                                 );
                               },
                             ),
@@ -142,12 +155,12 @@ class VaccRangeDetails extends StatelessWidget {
                           Container(
                             width: double.infinity,
 
-                            child: Text(" : الاعراض الجانبية",textAlign: TextAlign.right,style: TextStyle(color:Color(0xFF6A60A9),fontSize: 16,fontWeight: FontWeight.bold ),) ,
+                            child: Text(" : الاعراض الجانبية",textAlign: TextAlign.right,style: TextStyle(color:Color(0xFF6A60A9),fontSize: 17,fontWeight: FontWeight.bold ),) ,
                           ),
                           SizedBox(height: 5,),
                           Container(
                             width: double.infinity,
-                            child: Text("اي شي وسخونية ومهلبية وخش ع الحتة ديه",textAlign: TextAlign.right,style: TextStyle(fontWeight: FontWeight.w700,),),
+                            child: Text(side_effect,textAlign: TextAlign.right,style: TextStyle(fontWeight: FontWeight.w700,),),
 
                           )
                         ],
@@ -185,8 +198,8 @@ class OneVacc extends StatelessWidget {
             flex: 1,
             child: Container(
 //              margin: EdgeInsets.fromLTRB(20, 25, 20, 25),
-        width: MediaQuery.of(context).size.width / 40,
-        height: MediaQuery.of(context).size.height / 40,
+        width: 40,
+        height: 20,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Color(0XFFFBD14B),

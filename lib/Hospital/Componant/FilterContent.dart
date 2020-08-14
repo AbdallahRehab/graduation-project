@@ -23,7 +23,7 @@ class FilterList extends StatelessWidget {
             FilterChip(
               backgroundColor: Color(0xFF6A60A9),
               disabledColor: Color(0xFF6A60A9),
-
+              checkmarkColor: Colors.white,
               selectedColor: Color(0xFF6A60A9),
               label: Text(
                 'المنوفيه',
@@ -47,6 +47,7 @@ class FilterList extends StatelessWidget {
               disabledColor: Color(0xFF6A60A9),
 
               selectedColor: Color(0xFF6A60A9),
+              checkmarkColor: Colors.white,
 
               label: Text(
                 'الغربيه',

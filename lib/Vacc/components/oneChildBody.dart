@@ -65,11 +65,14 @@ class ChildDetailsCard extends StatelessWidget {
                 margin: EdgeInsets.fromLTRB(20, 25, 20, 25),
                 width: MediaQuery.of(context).size.width / 8,
                 height: MediaQuery.of(context).size.height / 8,
+                
                 child: Checkbox(
                   value: taken,
                   focusColor:Color(0XFFFBD14B) ,
                   activeColor: Color(0XFFFBD14B),
                   checkColor: Colors.white,
+                  hoverColor: Color(0XFFFBD14B),
+
 
 
                 )

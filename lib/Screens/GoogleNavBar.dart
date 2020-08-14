@@ -1,13 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:graduteproject/Food/Screen/detailsOfFeed.dart';
-import 'package:graduteproject/Food/Screen/food.dart';
-import 'package:graduteproject/Vacc/screens/login.dart';
-import 'package:graduteproject/Vacc/screens/vacc1.dart';
-import 'package:graduteproject/Vacc/screens/vacctaken.dart';
-import 'package:line_icons/line_icons.dart';
-class TabPage extends StatefulWidget {
+import 'package:graduteproject/Food/Screen/sys_food.dart';
+import 'package:graduteproject/Hospital/Screen/hospital.dart';
+import 'package:graduteproject/Screens/LoginScreen.dart';
+import 'package:graduteproject/Vacc/screens/mainVacc.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
+class TabPage extends StatefulWidget {
+final String nationalparant;
+
+  const TabPage({Key key, this.nationalparant}) : super(key: key);
   @override
   _TabPageState createState() => _TabPageState();
 }
@@ -34,60 +37,61 @@ class _TabPageState extends State<TabPage> {
 
     tabs.add(GButton(
       gap: gap,
-      iconActiveColor: Colors.purple,
-      iconColor: Colors.black,
-      textColor: Colors.purple,
-      color: Colors.purple.withOpacity(.2),
+      iconActiveColor: Color(0xFF6A60A9),
+      iconColor: Colors.black38,
+      textColor: Color(0xFF6A60A9),
+      color: Color(0xFF6A60A9).withOpacity(.2),
       iconSize: 24,
       padding: padding,
-      icon: LineIcons.home,
+      icon: Icons.local_hospital,
       // textStyle: t.textStyle,
-      text: 'Home',
+      text: 'الحضانات ',
     ));
 
     tabs.add(GButton(
       gap: gap,
-      iconActiveColor: Colors.pink,
-      iconColor: Colors.black,
-      textColor: Colors.pink,
-      color: Colors.pink.withOpacity(.2),
+      iconActiveColor: Color(0xFF6A60A9),
+      iconColor: Colors.black38,
+      textColor: Color(0xFF6A60A9),
+      color: Color(0xFF6A60A9).withOpacity(.2),
       iconSize: 24,
       padding: padding,
-      icon: LineIcons.heart_o,
+      icon: Icons.fastfood,
       // textStyle: t.textStyle,
-      text: 'Likes',
+      text: 'التغذية ',
     ));
 
     tabs.add(GButton(
       gap: gap,
-      iconActiveColor: Colors.amber[600],
-      iconColor: Colors.black,
-      textColor: Colors.amber[600],
-      color: Colors.amber[600].withOpacity(.2),
+      iconActiveColor: Color(0xFF6A60A9),
+      iconColor: Colors.black38,
+      textColor: Color(0xFF6A60A9),
+      color: Color(0xFF6A60A9).withOpacity(.2),
       iconSize: 24,
       padding: padding,
-      icon: LineIcons.search,
+      icon: Icons.child_care,
       // textStyle: t.textStyle,
-      text: 'Search',
+      text: 'التطعيمات ',
     ));
 
-    tabs.add(GButton(
-      gap: gap,
-      iconActiveColor: Colors.teal,
-      iconColor: Colors.black,
-      textColor: Colors.teal,
-      color: Colors.teal.withOpacity(.2),
-      iconSize: 24,
-      padding: padding,
-      icon: LineIcons.user,
-      // textStyle: t.textStyle,
-      text: 'Profile',
-    ));
+//    tabs.add(GButton(
+//      gap: gap,
+//      iconActiveColor: Colors.redAccent,
+//      iconColor: Colors.black38,
+//      textColor: Colors.redAccent,
+//      color: Colors.redAccent.withOpacity(.2),
+//      iconSize: 24,
+//      padding: padding,
+//      icon: Icons.exit_to_app,
+//      // textStyle: t.textStyle,
+//      text: 'خروج ',
+//    ));
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         extendBody: true,
 //        appBar: AppBar(
@@ -98,10 +102,12 @@ class _TabPageState extends State<TabPage> {
 //          ),
 //          backgroundColor: Colors.white,
 //        ),
+
         body: PageView.builder(
           onPageChanged: (page) {
-            setState(() {
+            setState(() async{
               selectedIndex = page;
+
             });
           },
           controller: controller,
@@ -109,20 +115,15 @@ class _TabPageState extends State<TabPage> {
             switch(position){
               case 0:
                 print('asbh');
-                return Container(
-                  color: colors[position],
-                );
+                return HospitalScreen();
                 break;
               case 1:
-                return Food();
+                return Sys_Food();
                 break;
               case 2:
-                return LoginScreen();
+                return MainVaccScreen(nationalparant: widget.nationalparant,);
                 break;
-              case 3:
-                return VaccTaken();
 
-                break;
             }
 
           },
